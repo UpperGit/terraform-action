@@ -1,6 +1,4 @@
 locals {
-  environment_vars = read_terragrunt_config(find_in_parent_folders("environment.hcl"))
-
   onwer_vars = read_terragrunt_config(find_in_parent_folders("owner.hcl"))
 
   credentials = local.onwer_vars.locals
@@ -36,7 +34,4 @@ remote_state {
   }
 }
 
-input = merge(
-  local.onwer_vars.locals,
-  local.environment_vars.locals,
-)
+input = local.onwer_vars.locals

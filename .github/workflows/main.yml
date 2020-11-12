@@ -22,7 +22,7 @@ jobs:
           OWNER_HCL: ${{ secrets.OWNER_HCL }}
         run: |
           echo "$GCP_JSON_CREDENTIALS" > gcp_credentials.json
-          echo "$OWNER_HCL" > deploy/owner.hcl
+          echo "$OWNER_HCL" > owner.hcl
 
       - name: Apply deploy/prd folder
         uses: ./
