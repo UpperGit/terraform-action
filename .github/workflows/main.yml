@@ -20,7 +20,7 @@ jobs:
         env:
           GCP_JSON_CREDENTIALS: ${{ secrets.GCP_JSON_CREDENTIALS }}
         run: |
-          echo "$GCP_JSON_CREDENTIALS" > /gcp_credentials.json
+          echo "$GCP_JSON_CREDENTIALS" > ${{ github.workspace }}/gcp_credentials.json
 
       - name: Apply deploy/prd folder
         uses: ./
@@ -31,6 +31,6 @@ jobs:
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
-          GOOGLE_APPLICATION_CREDENTIALS: /gcp_credentials.json
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/gcp_credentials.json
         with:
           path: deploy
