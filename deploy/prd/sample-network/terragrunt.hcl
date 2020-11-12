@@ -3,7 +3,7 @@ locals {
 }
 
 terraform {
-  source = "gcp-networking/"
+  source = "gcp-networking"
 }
 
 include {
