@@ -23,6 +23,8 @@ jobs:
         run: |
           echo "$GCP_JSON_CREDENTIALS" > gcp_credentials.json
           echo "$OWNER_HCL" > owner.hcl
+          ls -lah
+          echo $GITHUB_WORKSPACE
 
       - name: Apply deploy/prd folder
         uses: ./
