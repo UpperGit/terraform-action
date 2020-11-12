@@ -1,0 +1,20 @@
+name: 'Infrastructure as automation'
+description: 'Upper automated terraform infrastructure orchestrator'
+inputs:
+  terragrunt_options:
+    description: 'Terragrunt additional options'
+    required: true
+    default: --terragrunt-debug
+  path:
+    description: 'Which directory to use as context'
+    required: true
+    default: ''
+outputs:
+  state_output:
+    description: 'JSON string with outputs from latest infrastructure state change'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - CONTEXT_PATH=${{ inputs.context_path }}
+    - TERRAGRUNT_OPTIONS=${{ inputs.terragrunt_options }}

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# https://github.com/gruntwork-io/terragrunt/issues/74
+
+terraform "$@" 2>&1 | tee ./terraform.log
