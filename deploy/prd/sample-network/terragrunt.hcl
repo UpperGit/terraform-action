@@ -3,7 +3,7 @@ locals {
 }
 
 terraform {
-  source = "gcp-networking"
+  source = "git::git@github.com:UpperGit/terraform-modules.git//gcp/networking"
 }
 
 include {

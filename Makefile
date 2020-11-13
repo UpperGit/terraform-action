@@ -15,7 +15,7 @@ terragrunt_apply:
 	ls -lah
 
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
-	terragrunt apply-all --terragrunt-non-interactive --terragrunt-source /modules/ $(TERRAGRUNT_OPTIONS); \
-	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper --terragrunt-source /modules/ $(TERRAGRUNT_OPTIONS) ; \
+	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS); \
+	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) ; \
 	OUTPUT_CONTENT=$(shell cat terraform.log) ; \
 	echo "::set-output name=state_output::$(OUTPUT_CONTENT)"
