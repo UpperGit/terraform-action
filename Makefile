@@ -12,7 +12,8 @@ terragrunt_apply:
 	context_path="$1"
 	terragrunt_options="$2"
 
-	ls -lah
+	mkdir -p ~/.ssh; \
+	ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
 	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS); \

@@ -7,7 +7,7 @@ RUN \
 	# Update
 	apt-get update -y && \
 	# Install dependencies
-	apt-get install make unzip wget git -y
+	apt-get install make unzip wget git ssh -y
 
 ################################
 # Install Terraform
