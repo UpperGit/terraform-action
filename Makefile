@@ -12,6 +12,8 @@ terragrunt_apply:
 	context_path="$1"
 	terragrunt_options="$2"
 
+	ls -lah
+
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
 	terragrunt apply-all --terragrunt-non-interactive --terragrunt-source /modules/ $(TERRAGRUNT_OPTIONS); \
 	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper --terragrunt-source /modules/ $(TERRAGRUNT_OPTIONS) ; \
