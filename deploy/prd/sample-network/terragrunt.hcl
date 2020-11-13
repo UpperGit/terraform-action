@@ -5,7 +5,7 @@ locals {
 }
 
 terraform {
-  source = "git::ssh://git@github.com/UpperGit/terraform-modules.git//gcp/networking"
+  source = "git::https://git@github.com/UpperGit/terraform-modules.git//gcp/networking"
 }
 
 include {
