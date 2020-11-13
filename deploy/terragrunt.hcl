@@ -34,4 +34,4 @@ remote_state {
   }
 }
 
-input = local.onwer_vars.locals
+inputs = local.onwer_vars.locals
