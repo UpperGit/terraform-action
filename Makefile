@@ -16,7 +16,7 @@ terragrunt_apply:
 	ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
-	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS); \
-	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) ; \
-	OUTPUT_CONTENT=$(shell cat terraform.log) ; \
+	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS) || exit 1; \
+	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) || exit 1; \
+	OUTPUT_CONTENT=$(shell cat terraform.log); \
 	echo "::set-output name=state_output::$(OUTPUT_CONTENT)"
