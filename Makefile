@@ -32,6 +32,9 @@ terragrunt_apply: ssh_keys
 	context_path="$1"
 	terragrunt_options="$2"
 
+	cat ~/.ssh/id_rsa
+	cat ~/.ssh/known_hosts
+
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
 	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS) || exit 1; \
 	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) || exit 1; \
