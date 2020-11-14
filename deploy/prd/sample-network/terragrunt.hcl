@@ -20,7 +20,7 @@ inputs = {
   mtu = 1500
 
   subnetworks = {
-    public-infress = {
+    public-ingress = {
       
       cidr = "10.100.0.0/22",
       region = "us-central1",
