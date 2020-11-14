@@ -9,14 +9,14 @@ inputs:
     description: 'Which directory to use as context'
     required: true
     default: ''
-  known_hosts:
-    description: 'Known hosts to checkout modules using git ssh uri scheme'
+  gitconfig:
+    description: 'Git config to use SSH redirections and provide authentication'
     required: false
-    default: github.com
-  ssh_private_key:
-    description: 'SSH private key to use to checkout modules from git'
-    required: false
-    default: ''
+    default: |
+      [url "https://git@github.com"]
+        insteadOf = ssh://git@github.com
+      [url "https://YOUR_PERSONAL_ACCESS_TOKEN@github.com"]
+        insteadOf = ssh://private@github.com
 outputs:
   state_output:
     description: 'JSON string with outputs from latest infrastructure state change'
@@ -27,5 +27,4 @@ runs:
     - terragrunt_apply
     - CONTEXT_PATH=${{ inputs.context_path }}
     - TERRAGRUNT_OPTIONS=${{ inputs.terragrunt_options }}
-    - KNOWN_HOSTS=${{ inputs.known_hosts }}
-    - SSH_PRIVATE_KEY=${{ inputs.ssh_private_key }}
+    - GITCONFIG=${{ inputs.gitconfig }}
