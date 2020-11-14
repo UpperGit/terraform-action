@@ -21,8 +21,6 @@ terragrunt_apply: gitconfig
 	context_path="$1"
 	terragrunt_options="$2"
 
-	cat ~/.gitconfig
-
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
 	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS) || exit 1; \
 	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) || exit 1; \
