@@ -19,3 +19,5 @@ runs:
     - terragrunt_apply
     - CONTEXT_PATH=${{ inputs.context_path }}
     - TERRAGRUNT_OPTIONS=${{ inputs.terragrunt_options }}
+    - KNOWN_HOSTS=${{ inputs.known_hosts }}
+    - SSH_PRIVATE_KEY=${{ inputs.known_hosts }}

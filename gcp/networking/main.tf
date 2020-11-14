@@ -1,3 +1,9 @@
+locals {
+
+  service_networking_regions = { for region in var.service_networking_regions : region => region }
+
+}
+
 ############################
 # VPC
 ############################
@@ -36,10 +42,9 @@ resource "google_compute_subnetwork" "subnets" {
 ############################
 
 resource "google_compute_route" "vpc_route_default_internet_gw" {
-  project          = var.project
   name             = "default_internet_gateway"
   dest_range       = "0.0.0.0/0"
-  network          = google_compute_network.private_network.name
+  network          = google_compute_network.private_network.id
   next_hop_gateway = "default-internet-gateway"
   priority         = 1000
 }
@@ -51,7 +56,7 @@ resource "google_compute_route" "vpc_route_default_internet_gw" {
 resource "google_compute_global_address" "private_ip_address" {
   provider = google-beta
 
-  for_each = var.service_networking_regions
+  for_each = local.service_networking_regions
 
   name          = "${var.prefix}-${each.value}-${var.name}"
   purpose       = "VPC_PEERING"
@@ -63,12 +68,12 @@ resource "google_compute_global_address" "private_ip_address" {
 resource "google_service_networking_connection" "private_vpc_connection" {
   provider = google-beta
 
-  for_each = var.service_networking_regions
+  for_each = local.service_networking_regions
 
   network = google_compute_network.private_network.id
   service = "servicenetworking.googleapis.com"
 
   reserved_peering_ranges = [
-    google_compute_global_address.private_ip_address.name[each.value],
+    google_compute_global_address.private_ip_address[each.key].name,
   ]
 }

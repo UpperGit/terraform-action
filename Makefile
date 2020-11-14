@@ -1,19 +1,36 @@
 CONTEXT_PATH ?=
 TERRAGRUNT_OPTIONS ?= --terragrunt-debug
+KNOWN_HOSTS ?= github.com
+
+# Custom SSH private key
+# SSH_PRIVATE_KEY ?= 
 
 all:
 
-.PHONY: terragrunt_apply
+.PHONY: ssh_keys terragrunt_apply
 
 docker_image: Dockerfile
 	docker build -t terraform:latest --network host .
 
-terragrunt_apply:
+ssh_keys:
+	mkdir -p ~/.ssh
+
+	if [ -n "$$SSH_PRIVATE_KEY" ]; then \
+		ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''; \
+	else \
+		echo $$SSH_PRIVATE_KEY > ~/.ssh/id_rsa; \
+	fi && \
+	
+	chmod 600 ~/.ssh/id_rsa
+
+	for remote_host in $$KNOWN_HOSTS"; do \
+		ssh-keyscan -t rsa "$$remote_host" >> ~/.ssh/known_hosts; \
+	done
+	
+
+terragrunt_apply: ssh_keys
 	context_path="$1"
 	terragrunt_options="$2"
-
-	mkdir -p ~/.ssh; \
-	ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
 	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS) || exit 1; \
