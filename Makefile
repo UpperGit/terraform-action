@@ -19,7 +19,7 @@ ssh_keys:
 		ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''; \
 	else \
 		echo $$SSH_PRIVATE_KEY > ~/.ssh/id_rsa; \
-	fi && \
+	fi
 	
 	chmod 600 ~/.ssh/id_rsa
 
