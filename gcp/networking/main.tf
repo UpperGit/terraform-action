@@ -35,7 +35,6 @@ resource "google_compute_subnetwork" "subnets" {
   ip_cidr_range = each.value["cidr"]
   region        = each.value["region"]
 
-  private_ipv6_google_access = true
   private_ip_google_access   = true
 
 }

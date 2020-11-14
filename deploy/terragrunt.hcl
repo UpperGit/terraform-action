@@ -9,11 +9,13 @@ generate "providers" {
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 provider "google" {
+  version     = "~> 3.47.0"
   project     = "${local.credentials.project_id}"
   region      = "${local.credentials.region}"
 }
 
 provider "google-beta" {
+  version     = "~> 3.47.0"
   project     = "${local.credentials.project_id}"
   region      = "${local.credentials.region}"
 }
