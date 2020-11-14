@@ -15,7 +15,7 @@ docker_image: Dockerfile
 	docker build -t terraform:latest --network host .
 
 gitconfig:
-	@echo $$GITCONFIG > ~/.gitconfig
+	@echo "$$GITCONFIG" > ~/.gitconfig
 
 terragrunt_apply: gitconfig
 	context_path="$1"
