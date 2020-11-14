@@ -48,7 +48,7 @@ resource "google_compute_route" "vpc_route_default_internet_gw" {
   provider     = google
   name             = "${var.prefix}-${var.name}-default-internet-gateway"
   dest_range       = "0.0.0.0/0"
-  network          = google_compute_network.private_network.id
+  network          = google_compute_network.private_network.name
   next_hop_gateway = "default-internet-gateway"
   priority         = 1000
 }

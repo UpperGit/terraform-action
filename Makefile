@@ -7,7 +7,7 @@ GITCONFIG ?=
 
 all:
 
-.PHONY: gitconfig terragrunt_apply
+.PHONY: gitconfig terragrunt_apply local_terragrunt_apply
 
 .SILENT: gitconfig
 
@@ -23,6 +23,6 @@ terragrunt_apply: gitconfig
 
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
 	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS) || exit 1; \
-	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) || exit 1; \
+	terragrunt output-all --terragrunt-non-interactive -json --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) || exit 1; \
 	OUTPUT_CONTENT=$(shell cat terraform.log); \
 	echo "::set-output name=state_output::$(OUTPUT_CONTENT)"
