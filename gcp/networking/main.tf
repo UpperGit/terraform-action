@@ -13,6 +13,7 @@ resource "google_compute_network" "private_network" {
   mtu          = var.mtu
   routing_mode = "REGIONAL"
 
+
   auto_create_subnetworks         = false
   delete_default_routes_on_create = true
 
@@ -27,6 +28,8 @@ resource "google_compute_subnetwork" "subnets" {
 
   network = google_compute_network.private_network.id
 
+  secondary_ip_ranges = []
+
   name = "${var.prefix}-${var.name}-${each.value["region"]}-${each.key}"
 
   ip_cidr_range = each.value["cidr"]
@@ -34,6 +37,7 @@ resource "google_compute_subnetwork" "subnets" {
 
   private_ipv6_google_access = true
   private_ip_google_access   = true
+  enable_flow_logs           = false
 
 }
 
