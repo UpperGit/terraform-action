@@ -9,6 +9,7 @@ locals {
 ############################
 
 resource "google_compute_network" "private_network" {
+  provider     = google
   name         = "${var.prefix}-${var.name}"
   mtu          = var.mtu
   routing_mode = "REGIONAL"
@@ -24,11 +25,10 @@ resource "google_compute_network" "private_network" {
 ############################
 
 resource "google_compute_subnetwork" "subnets" {
+  provider     = google
   for_each = var.subnetworks
 
   network = google_compute_network.private_network.id
-
-  secondary_ip_ranges = []
 
   name = "${var.prefix}-${var.name}-${each.value["region"]}-${each.key}"
 
@@ -37,7 +37,6 @@ resource "google_compute_subnetwork" "subnets" {
 
   private_ipv6_google_access = true
   private_ip_google_access   = true
-  enable_flow_logs           = false
 
 }
 
@@ -46,6 +45,7 @@ resource "google_compute_subnetwork" "subnets" {
 ############################
 
 resource "google_compute_route" "vpc_route_default_internet_gw" {
+  provider     = google
   name             = "${var.prefix}-${var.name}-default-internet-gateway"
   dest_range       = "0.0.0.0/0"
   network          = google_compute_network.private_network.id
