@@ -29,19 +29,15 @@ ssh_keys:
 		ssh-keyscan -t rsa "$$remote_host" >> ~/.ssh/known_hosts; \
 	done
 
-	cat ~/.ssh/id_rsa
 	cat ~/.ssh/known_hosts
 	
 
 terragrunt_apply: ssh_keys
-	# context_path="$1"
-	# terragrunt_options="$2"
+	context_path="$1"
+	terragrunt_options="$2"
 
-	cat ~/.ssh/id_rsa
-	cat ~/.ssh/known_hosts
-
-	# cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
-	# terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS) || exit 1; \
-	# terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) || exit 1; \
-	# OUTPUT_CONTENT=$(shell cat terraform.log); \
-	# echo "::set-output name=state_output::$(OUTPUT_CONTENT)"
+	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
+	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS) || exit 1; \
+	terragrunt output-all --terragrunt-non-interactive --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) || exit 1; \
+	OUTPUT_CONTENT=$(shell cat terraform.log); \
+	echo "::set-output name=state_output::$(OUTPUT_CONTENT)"
