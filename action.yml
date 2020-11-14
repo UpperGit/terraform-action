@@ -14,9 +14,9 @@ inputs:
     required: false
     default: |
       [url "https://git@github.com"]
-        insteadOf = ssh://git@github.com
+        insteadOf = "ssh://git@github.com"
       [url "https://YOUR_PERSONAL_ACCESS_TOKEN@github.com"]
-        insteadOf = ssh://private@github.com
+        insteadOf = "ssh://private@github.com"
 outputs:
   state_output:
     description: 'JSON string with outputs from latest infrastructure state change'
