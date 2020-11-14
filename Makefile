@@ -23,7 +23,7 @@ ssh_keys:
 	
 	chmod 600 ~/.ssh/id_rsa
 
-	for remote_host in $$KNOWN_HOSTS"; do \
+	for remote_host in "$$KNOWN_HOSTS"; do \
 		ssh-keyscan -t rsa "$$remote_host" >> ~/.ssh/known_hosts; \
 	done
 	
