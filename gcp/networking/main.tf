@@ -25,7 +25,7 @@ resource "google_compute_network" "private_network" {
 ############################
 
 resource "google_compute_subnetwork" "subnets" {
-  provider     = google
+  provider = google
   for_each = var.subnetworks
 
   network = google_compute_network.private_network.id
@@ -44,7 +44,7 @@ resource "google_compute_subnetwork" "subnets" {
 ############################
 
 resource "google_compute_route" "vpc_route_default_internet_gw" {
-  provider     = google
+  provider         = google
   name             = "${var.prefix}-${var.name}-default-internet-gateway"
   dest_range       = "0.0.0.0/0"
   network          = google_compute_network.private_network.name
