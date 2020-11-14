@@ -9,13 +9,15 @@ all:
 
 .PHONY: ssh_keys terragrunt_apply
 
+.SILENT: ssh_keys
+
 docker_image: Dockerfile
 	docker build -t terraform:latest --network host .
 
 ssh_keys:
 	mkdir -p ~/.ssh
 
-	if [ -n "$$SSH_PRIVATE_KEY" ]; then \
+	if [ -z "$$SSH_PRIVATE_KEY" ]; then \
 		ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''; \
 	else \
 		echo $$SSH_PRIVATE_KEY > ~/.ssh/id_rsa; \
