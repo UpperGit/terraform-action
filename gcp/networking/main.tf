@@ -27,7 +27,7 @@ resource "google_compute_subnetwork" "subnets" {
 
   network = google_compute_network.private_network.id
 
-  name = "${var.prefix}-${each.value["region"]}-${each.key}"
+  name = "${var.prefix}-${var.name}-${each.value["region"]}-${each.key}"
 
   ip_cidr_range = each.value["cidr"]
   region        = each.value["region"]
@@ -42,7 +42,7 @@ resource "google_compute_subnetwork" "subnets" {
 ############################
 
 resource "google_compute_route" "vpc_route_default_internet_gw" {
-  name             = "default-internet-gateway"
+  name             = "${var.prefix}-${var.name}-default-internet-gateway"
   dest_range       = "0.0.0.0/0"
   network          = google_compute_network.private_network.id
   next_hop_gateway = "default-internet-gateway"
@@ -58,7 +58,7 @@ resource "google_compute_global_address" "private_ip_address" {
 
   for_each = local.service_networking_regions
 
-  name          = "${var.prefix}-${each.value}-${var.name}"
+  name          = "${var.prefix}-${var.name}-${each.value}"
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
   prefix_length = 16
