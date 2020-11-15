@@ -19,7 +19,7 @@ inputs:
         insteadOf = "ssh://private@github.com"
 outputs:
   state_output:
-    description: 'JSON string with outputs from latest infrastructure state change'
+    description: 'JSON string with outputs from latest infrastructure state version'
 runs:
   using: 'docker'
   image: 'Dockerfile'
