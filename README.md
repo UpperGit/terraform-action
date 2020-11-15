@@ -8,12 +8,9 @@ This action automates infrastrucuture orchestration by providing shared terrafor
 - Keep your per-service infrastructure in the same repository of the application with minimal impact to developer's project structure
 - Create a real multi-provider experience integrated to the SDLC
 
-This repository is justing cooking some flavorful ingredients:
+This repository is justing cooking some flavorful ingredients: **Terraform, Terragrunt, Docker, GitHub Actions.**
 
-- Terraform
-- Terragrunt
-- Docker
-- GitHub Actions
+--------------------
 
 - [Infrastructure as automation](#infrastructure-as-automation)
 	- [Concept](#concept)
