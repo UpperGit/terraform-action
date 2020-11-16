@@ -1,6 +1,6 @@
 # Infrastructure as automation
 
-This action automates infrastrucuture orchestration by providing shared terraform modules and a terragrunt DRY practices boilerplate.  It uses GitHub Actions pipelines to apply infrastructure updates, so you can easily have:
+This action automates infrastrucuture orchestration providing shared terraform modules and a terragrunt DRY practices boilerplate.  It uses GitHub Actions pipelines to apply infrastructure updates, so you can easily have:
 
 - 1 branch mapping to 1 exclusive private environment
 - 1 PR mapping to 1 temporary test environment
