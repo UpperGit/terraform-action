@@ -63,10 +63,10 @@ This repository is also a *proof of concept*, so if you have a look at [.github/
 And some considerations about the side effects and requirements of this action:
 
 1. We don't require **any** terragrunt module project structure, you can specify where to execute `terragrunt apply-all` command using the [path](#path). This path is relative to the root of your repository.
-2. To setup credentials you can use the standard authentication method of each terraform provider (as they follow the 12 app factor configuration principle). The workflow of this repository uses GitHub Secrets integration with GitHub Actions to retrieve sensitive values during *"apply time"*.
-3. To get the benefits from terragrunt's `read_terragrunt_config(find_in_parent_folders())` function call you can implement the same configuration as this repository does to `owner.hcl` file. First we create a secret (`OWNER_HCL`) with the file content and through a job's step we create the file where it need to be placed.
+2. To setup credentials you can use the standard authentication method of each terraform provider (as they follow the 12 app factor configuration principle). The workflow of this repository uses GitHub Secrets integration with GitHub Actions to retrieve sensitive values in *"apply time"*.
+3. To get the benefits from terragrunt's `read_terragrunt_config(find_in_parent_folders())` function call you can implement the same configuration as this repository does to `owner.hcl` file. First we create a secret (`OWNER_HCL`) with the file content and then a job's step creates the file where it need to be placed.
 4. If you want to use the action from other repositories you can't leave the `uses: ./` in the workflow declaration. You must put the pattern: `UpperGit/terraform-modules@VERSION_TAG` where `VERSION_TAG` substring can be something like `v1`.
 
 ## An author's note
 
-> The important thing about this project is the concept, you can easily modify anything to your flavor by forking or cloning it, things done here are highly based on our experience and free to be discussed.
+> The important thing about this project is the concept, you can easily modify anything to your flavor by forking or cloning it, things done here are highly based on my experience and free to be discussed.
