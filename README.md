@@ -4,9 +4,9 @@ This action automates infrastrucuture orchestration providing shared terraform m
 
 - 1 branch mapping to 1 exclusive private environment
 - 1 PR mapping to 1 temporary test environment
-- Keep your shared infrastructure in one or more repositories
-- Keep your per-service infrastructure in the same repository of the application with minimal impact to developer's project structure
-- Create a real multi-provider experience integrated into the SDLC
+- Shared infrastructure in one or more repositories
+- Per-service infrastructure in the same repository of the application with minimal impact to developer's project structure
+- A real multi-provider experience integrated into the SDLC
 
 This repository is justing cooking some flavorful ingredients: **Terraform, Terragrunt, Docker, GitHub Actions.**
 
