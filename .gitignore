@@ -30,5 +30,5 @@ override.tf.json
 # example: *tfplan*
 
 # Terragrunt
-owner.hcl
+global.hcl
 *.terragrunt-cache
