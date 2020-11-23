@@ -29,7 +29,7 @@ terragrunt_output:
 	terragrunt_options="$2"
 
 	cd "$(GITHUB_WORKSPACE)/$(CONTEXT_PATH)" || exit 1; \
-	terragrunt output-all --terragrunt-non-interactive -json --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) || exit 1; \
+	terragrunt output-all --terragrunt-non-interactive -json --terragrunt-tfpath /terraform_wrapper $(TERRAGRUNT_OPTIONS) > /dev/null 2>&1 || exit 1; \
 	OUTPUT_CONTENT=$(shell cat terraform.log); \
 	echo "::set-output name=state_output::$(OUTPUT_CONTENT)"
 
