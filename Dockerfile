@@ -41,7 +41,6 @@ RUN \
 	# Check that it's installed
 	terragrunt --version
 
-COPY terraform_wrapper /terraform_wrapper
 COPY Makefile /Makefile
 
 ENTRYPOINT ["make", "-C", "/"]
